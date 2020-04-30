@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get "poll" => "polls#index"
+  post "poll" => "polls#create"
+  get "poll/:id" => "polls#show"
+
+  get "poll/:id/stats" => "polls#stats"
+  post "poll/:id/vote" => "polls#vote"
 end

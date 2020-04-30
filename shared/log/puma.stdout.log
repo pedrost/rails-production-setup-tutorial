@@ -1,0 +1,9 @@
+=== puma startup: 2020-05-06 15:38:43 -0400 ===
+[23480] * Starting control server on unix:///tmp/puma-status-1588793923776-23480
+[23486] + Gemfile in context: /home/pedrost/rails/web_service/Gemfile
+[23490] + Gemfile in context: /home/pedrost/rails/web_service/Gemfile
+[23480] - Worker 0 (pid: 23486) booted, phase: 0
+[23480] - Worker 1 (pid: 23490) booted, phase: 0
+[23480] - Gracefully shutting down workers...
+[23480] === puma shutdown: 2020-05-06 15:53:54 -0400 ===
+[23480] - Goodbye!
