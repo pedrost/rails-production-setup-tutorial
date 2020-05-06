@@ -15,9 +15,10 @@ production:
  database: web_service_production
  pool: 5
  timeout: 5000
- username: root
+ username: web_service
  password: secret123
- host: <IP_PRODUCTION_DB>
+ host: '3.134.253.125'
+ socket: '/var/run/mysqld/mysqld.sock'
 
 test:
   <<: *default

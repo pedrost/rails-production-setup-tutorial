@@ -27,6 +27,8 @@ group :development, :test do
   gem "faker"
   # For testing
   gem "rspec-rails"
+  gem "rails-controller-testing"
+  gem 'factory_girl_rails', '1.0'
 end
 
 group :development do

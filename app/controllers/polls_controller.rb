@@ -1,4 +1,9 @@
 class PollsController < ApplicationController
+
+  def index
+    return render json: Poll.all, status: :ok
+  end
+
   def show
     poll = Poll.find_by(id: params[:id])
     return render plain: "NOT FOUND", :status => :not_found if poll.blank?
@@ -31,9 +36,6 @@ class PollsController < ApplicationController
   def vote
     poll = Poll.find_by(id: params[:id])
     option = poll.options.find_by(id: vote_params[:option_id]) if poll.present?
-
-    # if don't find option by id, try getting by index 0,1,2,3
-    option = poll.options[vote_params[:option_id]] if vote_params[:option_id].present? && option.blank?
 
     return render plain: "NOT FOUND", status: :not_found if option.blank?
     return render plain: "OK", status: :ok if option.vote!

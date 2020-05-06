@@ -1,5 +1,3 @@
-
-
 namespace :populate do
   task polls: :environment do
     50.times do

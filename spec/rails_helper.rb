@@ -62,3 +62,12 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
+
+module ActionDispatch
+  class TestRequest
+    # Override host, by default it is test.host
+    def host
+      'localhost:3000'
+    end
+  end
+end
