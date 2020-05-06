@@ -48,20 +48,21 @@ Esses atributos são essenciais dependendo do banco que você queira
 que a aplicação se conecte. No meu caso **adaper: mysql2** e **encoding: utf8mb4**  
 também é preciso configurar **user** e **password** que foram criados em seu banco  
 
-No meu caso, vou preencher **user: web_service** e **password: secret123** como o meu script  
-automatizado criou lá em cima quando configurei o banco no servidor.  
+No meu caso, vou preencher **mysql_username: web_service** e **mysql_password: secret123** nas **credentials** como variaveis  
+de producao, rodando o comando `EDITOR=nano bin/rails credentials:edit`  
 Também vou preencher **hostname** com o **IP** do servidor remoto que eu configurei  
 Que no caso é **3.134.253.125**, junto com o local do **socket** do **mysql**  
 Que no caso é **socket: '/var/run/mysqld/mysqld.sock'**  
 
 ```
 production:
+production:
  <<: *default
  database: web_service_production
  pool: 5
  timeout: 5000
- username: root
- password: secret123
+ username: <%= Rails.application.credentials.dig(:production, :mysql_username) %>
+ password: <%= Rails.application.credentials.dig(:production, :mysql_password) %>
  host: '3.134.253.125'
  socket: '/var/run/mysqld/mysqld.sock'
 ```
@@ -77,6 +78,56 @@ Depois, migrar o banco em produção
 
 Agora podemos iniciar nossa aplicação em produção rodando   
 ```RAILS_ENV=production rails s```
+
+### Passo 3 - Instalando e configurando nginx
+
+Para instalar o nginx rode  
+```sudo apt-get install nginx```
+
+Depois configure o arquivo default
+```sudo nano /etc/nginx/sites-available/default```
+
+Vou configurar dessa maneira para que meu localhost aponte para o socket do puma  
+
+```
+upstream app {
+    # É preciso alterar para o caminho de onde voce baixou esse repositorio
+    server unix:/var/www/web_service/shared/sockets/puma.sock fail_timeout=0;
+}
+
+server {
+    listen 80;
+    server_name localhost;
+
+    root /home/deploy/appname/public;
+
+    try_files $uri/index.html $uri @app;
+
+    location @app {
+        proxy_pass http://app;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_redirect off;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
+}
+```
+
+Depois restarte o nginx  
+```sudo service nginx reload```
+
+### Passo 4 - Startando puma
+
+O puma já está configurado para produção em /config/puma.rb  
+Você pode encontrar mais informações sobre o puma aqui [PUMA Page](https://rvm.io/) 
+Você pode iniciar o puma rodando
+```puma```
+
+A aplicação deve estar rodando em  
+```http://localhost```
 
 ## Testes
 

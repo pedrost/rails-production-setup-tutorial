@@ -15,8 +15,8 @@ production:
  database: web_service_production
  pool: 5
  timeout: 5000
- username: web_service
- password: secret123
+ username: <%= Rails.application.credentials.dig(:production, :mysql_username) %>
+ password: <%= Rails.application.credentials.dig(:production, :mysql_password) %>
  host: '3.134.253.125'
  socket: '/var/run/mysqld/mysqld.sock'
 
