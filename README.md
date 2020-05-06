@@ -85,8 +85,8 @@ Para rodar os testes automatizados basta rodar ```rspec```
 ## Rotas
 
 **Verb**&nbsp;&nbsp;&nbsp;**URI&nbsp;Pattern**&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;**Controller#Action**&nbsp;&nbsp;  
-GET&nbsp;&nbsp;&nbsp;&nbsp;/poll(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#index&nbsp;&nbsp;  
-POST&nbsp;&nbsp;/poll(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#create&nbsp;&nbsp;  
-GET&nbsp;&nbsp;&nbsp;&nbsp;/poll/:id(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#show&nbsp;&nbsp;  
-GET&nbsp;&nbsp;&nbsp;&nbsp;/poll/:id/stats(.:format)&nbsp;&nbsp;polls#stats&nbsp;&nbsp;  
-POST&nbsp;&nbsp;/poll/:id/vote(.:format)&nbsp;&nbsp;&nbsp;polls#vote&nbsp;&nbsp;  
+GET&nbsp;&nbsp;&nbsp;&nbsp;/poll(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#index   
+POST&nbsp;&nbsp;/poll(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#create   
+GET&nbsp;&nbsp;&nbsp;&nbsp;/poll/:id(.:format)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;polls#show   
+GET&nbsp;&nbsp;&nbsp;&nbsp;/poll/:id/stats(.:format)&nbsp;&nbsp;polls#stats  
+POST&nbsp;&nbsp;/poll/:id/vote(.:format)&nbsp;&nbsp;&nbsp;polls#vote  
