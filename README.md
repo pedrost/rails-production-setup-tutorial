@@ -69,11 +69,24 @@ production:
 ### Passo 3 - Criando o banco de produção e migrando o banco
 
 Com o database.yml configurado e banco configurado é possivel  
-criar o banco em produção **web_service_production** rodando
+criar o banco em produção **web_service_production** rodando  
 ```rake db:create RAILS_ENV=production```
 
 Depois, migrar o banco em produção  
 ```rake db:migrate RAILS_ENV=production```
 
-Agora podemos iniciar nossa aplicação em produção rodando  
+Agora podemos iniciar nossa aplicação em produção rodando   
 ```RAILS_ENV=production rails s```
+
+## Testes
+
+Para rodar os testes automatizados basta rodar ```rspec```  
+
+## Rotas
+
+**Verb**   **URI Pattern**                **Controller#Action**
+GET    /poll(.:format)            polls#index  
+POST   /poll(.:format)            polls#create  
+GET    /poll/:id(.:format)        polls#show  
+GET    /poll/:id/stats(.:format)  polls#stats  
+POST   /poll/:id/vote(.:format)   polls#vote  
