@@ -84,7 +84,7 @@ Agora podemos iniciar nossa aplicação em produção rodando
 Para instalar o nginx rode  
 ```sudo apt-get install nginx```
 
-Depois configure o arquivo default
+Depois configure o arquivo default  
 ```sudo nano /etc/nginx/sites-available/default```
 
 Vou configurar dessa maneira para que meu localhost aponte para o socket do puma  
@@ -122,8 +122,8 @@ Depois restarte o nginx
 ### Passo 4 - Startando puma
 
 O puma já está configurado para produção em /config/puma.rb  
-Você pode encontrar mais informações sobre o puma aqui [PUMA Page](https://rvm.io/) 
-Você pode iniciar o puma rodando
+Você pode encontrar mais informações sobre o puma aqui [PUMA Page](https://rvm.io/)  
+Você pode iniciar o puma rodando  
 ```puma```
 
 A aplicação deve estar rodando em  
