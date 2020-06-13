@@ -1,5 +1,9 @@
 #README
 
+## Introdução
+
+Rails Production Setup é um tutorial que ensina a configurar um banco e simular um ambiente de produção localmente :)
+
 ## Instalação
 
 ### Passo 1 - Instalando ruby
