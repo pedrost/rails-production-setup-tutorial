@@ -92,25 +92,19 @@ Vou configurar dessa maneira para que meu localhost aponte para o socket do puma
 ```
 upstream app {
     # É preciso alterar para o caminho de onde voce baixou esse repositorio
-    server unix:/var/www/web_service/shared/sockets/puma.sock fail_timeout=0;
+    server unix:/var/www/rails_production_setup_tutorial/shared/sockets/puma.sock fail_timeout=0;
 }
 
 server {
     listen 80;
-    server_name localhost;
 
-    root /home/deploy/appname/public;
-
-    try_files $uri/index.html $uri @app;
-
-    location @app {
+    location / {
         proxy_pass http://app;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header Host $http_host;
         proxy_redirect off;
     }
 
-    error_page 500 502 503 504 /500.html;
     client_max_body_size 4G;
     keepalive_timeout 10;
 }
@@ -119,15 +113,33 @@ server {
 Depois restarte o nginx  
 ```sudo service nginx reload```
 
-### Passo 4 - Startando puma
+### Passo 4 - Criando o service em /etc/systemd/system/rails_production_setup_tutorial.service
 
-O puma já está configurado para produção em /config/puma.rb  
-Você pode encontrar mais informações sobre o puma aqui [PUMA Page](https://rvm.io/)  
-Você pode iniciar o puma rodando  
-```puma```
+```
+[Unit]
+Description=Puma Rails Production Setup Tutorial
+After=network.target
 
-A aplicação deve estar rodando em  
-```http://localhost```
+[Service]
+Type=simple
+
+WorkingDirectory=/var/www/rails_production_setup_tutorial
+ExecStart=/home/rails_production_setup_tutorial/.rvm/gems/ruby-2.5.1/wrappers/puma -C /var/www/rails_production_setup_tutorial/config/puma.rb
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+```
+
+
+### Passo 4 - Startando nosso service
+
+```sudo service rails_production_setup_tutorial start```
+
+Para checar o status 
+```sudo service rails_production_setup_tutorial status```
 
 ## Testes
 
