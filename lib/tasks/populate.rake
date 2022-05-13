@@ -1,5 +1,4 @@
 namespace :populate do
-  "teste"
   task polls: :environment do
     50.times do
       poll = Poll.create(
